@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local News Search</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Add some specific JS-related styles */
+        #status {
+            text-align: center;
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .article-source {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #2563eb;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="main-header">
+            <h1 class="logo glitch" data-text="SYNAPSE" onclick="showSearch()" style="cursor: pointer;">SYNAPSE</h1>
+            <div class="header-controls">
+                <button onclick="showSources()" class="nav-btn">⚙️ Sources</button>
+            </div>
+        </header>
+
+        <!-- Search Section (Always Visible by default) -->
+        <div id="search-view">
+            <div class="search-hero">
+                <div class="search-box">
+                    <input type="text" id="query" placeholder="Search local news..."
+                        onkeydown="if(event.key === 'Enter') search()">
+                    <button onclick="search()">Search</button>
+                </div>
+
+                <div class="crawl-visualizer-main">
+                    <canvas id="networkMap" width="800" height="300"></canvas>
+                    <div id="crawl-stats" style="color: #666; margin-top: 10px; font-size: 0.9rem;">Live Crawler Idle
+                    </div>
+                </div>
+
+                <div class="matrix-globe-container">
+                    <h3>Global Source Matrix</h3>
+                    <pre id="ascii-globe"></pre>
+                </div>
+            </div>
+            <div id="search-results" class="results"></div>
+        </div>
+
+        <!-- News Feed Section -->
+        <div id="news-view" style="display: none;">
+            <div class="news-header">
+                <h2>Local News Feed (RSS Discovered)</h2>
+                <button onclick="loadNews()">Refresh</button>
+            </div>
+            <div id="news-results" class="results"></div>
+        </div>
+
+
+
+        <!-- Sources Page (Formerly Settings) -->
+        <div id="sources-view" style="display: none;">
+            <div class="settings-container">
+                <div class="settings-header">
+                    <h2>Manage Sources</h2>
+                    <!-- Close button removed -->
+                </div>
+
+                <div class="add-source-form">
+                    <input type="text" id="new-source-url" placeholder="Import crawling URL...">
+                    <input type="number" id="new-source-interval" placeholder="Mins" value="60" style="width: 70px;">
+                    <input type="number" id="new-source-depth" placeholder="Depth" value="12" style="width: 70px;">
+                    <button onclick="addSource()">Add</button>
+                </div>
+
+                <div id="sources-list"></div>
+            </div>
+        </div>
+
+        <!-- Search Transition Overlay -->
+        <div id="search-transition" style="display: none;">
+            <div class="matrix-text-container">
+                <h2 id="transition-query"></h2>
+                <div class="matrix-rain"></div>
+            </div>
+            <div class="digital-globe-spinner">
+                <div class="ring r1"></div>
+                <div class="ring r2"></div>
+                <div class="ring r3"></div>
+                <div class="core"></div>
+            </div>
+        </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

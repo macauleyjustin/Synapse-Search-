@@ -1,0 +1,18 @@
+{
+    "name": "local-news-search",
+    "version": "1.0.0",
+    "description": "Local news search engine using Node.js",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "crawl": "node crawler.js"
+    },
+    "dependencies": {
+        "@mozilla/readability": "^0.6.0",
+        "axios": "^1.6.0",
+        "cheerio": "^1.0.0-rc.12",
+        "express": "^4.18.2",
+        "jsdom": "^27.4.0",
+        "sqlite3": "^5.1.7"
+    }
+}
